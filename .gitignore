@@ -2,5 +2,3 @@ bin/
 .cache
 *.class
 *.log
-.classpath
-refactoring_test/rscore/tests/application/RenameFieldAndAccessorTest.scala
