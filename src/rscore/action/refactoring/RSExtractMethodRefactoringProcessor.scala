@@ -10,7 +10,7 @@ import org.eclipse.jdt.core.dom.ASTNode
 
 import org.eclipse.jdt.core.dom.Modifier
 
-class RSExtractMethodRefactoringProcessor(detail: RSDetailEntity) extends RSAbstractRefactoringProcessor {
+class RSExtractMethodRefactoringProcessor(detail: RSDetailEntity, name: String) extends RSAbstractRefactoringProcessor {
 
 	// TODO: <y> method name, visibility and other property should be customizable, and use default value
 	def createAction(): RSRefactoringAction = {
@@ -30,6 +30,7 @@ class RSExtractMethodRefactoringProcessor(detail: RSDetailEntity) extends RSAbst
 
 			val refactor = new ExtractMethodRefactoring(iCU, start, len)
 			refactor.setVisibility(Modifier.PROTECTED)
+			refactor.setMethodName(name)
 			
 			var pm = new NullProgressMonitor
 			var initialStatus = refactor.checkInitialConditions(pm)

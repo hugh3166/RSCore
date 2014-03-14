@@ -5,11 +5,11 @@ import rscore.action.refactoring.RSExtractMethodRefactoringProcessor
 
 trait RSTExtractMethod extends RefactoringTrait{
 	
-	def extractMethod(): Unit = {
+	def extractMethod(name: String): Unit = {
 		self match{
 			case detail: RSDetailEntity =>{
 
-				val processor = new RSExtractMethodRefactoringProcessor(detail)
+				val processor = new RSExtractMethodRefactoringProcessor(detail, name)
 				processor.createAction().perform()
 			}
 		}
