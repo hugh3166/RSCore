@@ -65,7 +65,7 @@ class RSPullUpRefactoringProcessor(rsObject: RSObject, targetClass: RSClass) ext
 
 					processor.setDestinationType(targetClass.origin())
 
-					// 引き上げたら元のメソッドを削除するオプション（なぜかメソッドに対しては必要）
+					// TODO: <y_MARK> 引き上げたら元のメソッドを削除するオプション（なぜかメソッドに対しては必要）
 					processor.setDeletedMethods(ms)
 
 					new ProcessorBasedRefactoring(processor)

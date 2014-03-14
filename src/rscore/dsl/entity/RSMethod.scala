@@ -1,25 +1,25 @@
 package rscore.dsl.entity
+import sun.reflect.generics.reflectiveObjects.NotImplementedException
+import org.eclipse.jdt.internal.corext.refactoring.structure.ASTNodeSearchUtil
 import org.eclipse.jdt.core.IMethod
 import org.eclipse.jdt.core.Signature
 import org.eclipse.jdt.core.dom.MethodDeclaration
-import sun.reflect.generics.reflectiveObjects.NotImplementedException
-import org.eclipse.jdt.internal.corext.refactoring.structure.ASTNodeSearchUtil
+import org.eclipse.jdt.core.dom.Block
 import org.eclipse.jdt.core.dom.Modifier
-import rscore.dsl.util.ASTUtil
 import org.eclipse.jdt.core.dom.CompilationUnit
 import org.eclipse.jdt.core.dom.Type
+import org.eclipse.jdt.core.IType
 import rscore.dsl.traits.search.ModifierBasedSearchable
 import rscore.dsl.traits.search.NameBasedSearchable
 import rscore.dsl.traits.search.CallbackBasedSearchable
 import rscore.dsl.traits.search.TypeBasedSearchable
 import rscore.dsl.traits.search.SignatureBasedSearchable
-import org.eclipse.jdt.core.IType
+import rscore.dsl.util.ASTUtil
 import rscore.dsl.traits.action.RSTIntroduceFactory
 import rscore.dsl.entity.collection.RSCollection
 import rscore.dsl.traits.action.RSTIntroduceParameterObject
 import rscore.dsl.traits.action.RSTRenameRefactoring
 import rscore.dsl.traits.action.RSTIntroduceIndirection
-import org.eclipse.jdt.core.dom.Block
 import rscore.dsl.detail.RSBody
 import rscore.dsl.traits.action.RSTChangeSignatureRefactoring
 
@@ -37,7 +37,7 @@ class RSMethod(element: IMethod)
 	with RSTIntroduceParameterObject
 	with RSTRenameRefactoring
 	with RSTIntroduceIndirection
-	with RSTChangeSignatureRefactoring{
+	with RSTChangeSignatureRefactoring {
 
 	override val __identifier = "method"
 	override val kind = RSEntity.METHOD

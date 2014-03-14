@@ -9,7 +9,6 @@ import rscore.dsl.entity.collection.By
 import rscore.dsl.entity.collection.With
 import rscore.dsl.entity.RSField
 import org.eclipse.ltk.core.refactoring.RefactoringStatus
-import rscore.action.refactoring.RSAbstractRefactoringProcessor
 import rscore.helper.RSRefactoringResult
 import rscore.helper.RefactoringExecutionException
 
