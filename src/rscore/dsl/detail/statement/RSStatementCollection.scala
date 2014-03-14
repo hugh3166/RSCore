@@ -6,5 +6,9 @@ class RSStatementCollection(statements: List[RSStatement]) extends RSDetailEntit
 		val filtered = statements.filter(e => e.isKindOf(kind))
 		return new RSStatementCollection(filtered)
 	}
+	
+	def findByKind(kind: Int): RSStatement = {
+		return filterByKind(kind).first
+	}
 
 }

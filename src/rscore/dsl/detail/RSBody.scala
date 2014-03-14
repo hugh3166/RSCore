@@ -12,7 +12,7 @@ import rscore.dsl.detail.statement.RSVariableDeclarationStatement
 import rscore.dsl.detail.statement.RSStatement
 import rscore.dsl.detail.statement.RSStatementCollection
 
-class RSBody(block: Block, val parent: RSObject = RSNullObject) extends RSDetailEntity(block, parent){
+class RSBody(block: Block, parent: RSObject = RSNullObject) extends RSDetailEntity(block, parent){
 	def statements(kind: Int): RSStatementCollection = {
 		return this.statements().filterByKind(kind)
 	}
