@@ -59,6 +59,32 @@ case class RSCollection[T <: RSEntity](rsElements: Array[T])
 		return result
 		// val a = abstractArray.map(_.asInstanceOf[T])
 	}
+	
+	// TODO: <y> temporary methods: improve these methods
+	def withPublic(): RSCollection[T] = {
+		select(By.Modifier("public"))
+	}
+	def withoutPublic(): RSCollection[T] = {
+		select(By.Modifier(With.out("public")))
+	}
+	def withPrivate(): RSCollection[T] = {
+		select(By.Modifier("private"))
+	}
+	def withoutPrivate(): RSCollection[T] = {
+		select(By.Modifier(With.out("private")))
+	}
+	def withFinal(): RSCollection[T] = {
+		select(By.Modifier("public"))
+	}
+	def withoutFinal(): RSCollection[T] = {
+		select(By.Modifier(With.out("final")))
+	}
+	def withStatic(): RSCollection[T] = {
+		select(By.Modifier("static"))
+	}
+	def withoutStatic(): RSCollection[T] = {
+		select(By.Modifier(With.out("static")))
+	}
 
 	// Just an alias to select
 	def my_select(query: RSQuery): RSCollection[T] = {
