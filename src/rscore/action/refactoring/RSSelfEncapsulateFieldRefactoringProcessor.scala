@@ -7,6 +7,9 @@ import org.eclipse.ltk.core.refactoring.Change
 import rscore.dsl.util.ImplicitConversions._
 import rscore.dsl.common.RSObject
 
+import rscore.helper.RefactoringHelper
+import rscore.helper.RSRefactoringResult
+
 class RSSelfEncapsulateFieldRefactoringProcessor(rsField: RSObject) extends RSAbstractRefactoringProcessor {
 	// def createAction(rsField: RSObject): RSRefactoringAction = {
 	override def createAction(): RSRefactoringAction = {
@@ -43,9 +46,11 @@ class RSSelfEncapsulateFieldRefactoringProcessor(rsField: RSObject) extends RSAb
 				if (!initialStatus.isOK() || !finalStatus.isOK()) {
 					throw new Exception("Condition checking exception")
 				}
+				
+				var result: RSRefactoringResult = RefactoringHelper.performRefactoring(refactoring)
 
-				var change: Change = refactoring.createChange(pm)
-				change.perform(pm)
+//				var change: Change = refactoring.createChange(pm)
+//				change.perform(pm)
 			}
 		return action
 	}
