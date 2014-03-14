@@ -31,6 +31,10 @@ object RefactoringHelper {
 			throw new RefactoringExecutionException(status)
 		}
 		var undo: Change = perform.getUndoChange()
+		
+		// push to UndoStack
+		UndoManager.pushUndo(undo)
+		
 		return new RSRefactoringResult(status, undo)
 	}
 }

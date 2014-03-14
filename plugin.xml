@@ -20,9 +20,6 @@
             commandId="plugin_using_scala.commands.sampleCommand"
             class="rscore.handlers.SampleHandler">
       </handler>
-      <handler
-            commandId="plugin_using_scala.commands.sampleCommand1">
-      </handler>
    </extension>
    <extension
          point="org.eclipse.ui.bindings">
@@ -38,13 +35,14 @@
       <menuContribution
             locationURI="menu:org.eclipse.ui.main.menu?after=additions">
          <menu
-               label="Sample Menu"
+               label="RS Menu"
                mnemonic="M"
                id="plugin_using_scala.menus.sampleMenu">
             <command
                   commandId="plugin_using_scala.commands.sampleCommand"
-                  mnemonic="S"
-                  id="plugin_using_scala.menus.sampleCommand">
+                  id="plugin_using_scala.menus.sampleCommand"
+                  label="Undo"
+                  mnemonic="S">
             </command>
          </menu>
       </menuContribution>

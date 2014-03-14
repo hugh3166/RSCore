@@ -88,6 +88,8 @@ import rscore.dsl.common.RSObject
 import rscore.action.refactoring.RSSelfEncapsulateFieldRefactoringProcessor
 import rscore.action.refactoring.RSRefactoringAction
 
+import rscore.helper.UndoManager
+
 /**
  * Our sample handler extends AbstractHandler, an IHandler base class.
  * @see org.eclipse.core.commands.IHandler
@@ -100,48 +102,50 @@ class SampleHandler extends AbstractHandler {
 	 * from the application context.
 	 */
 	def execute(event: ExecutionEvent): Object = {
-		println("execute() is invoked")
-		var window: IWorkbenchWindow = HandlerUtil.getActiveWorkbenchWindowChecked(event);
-
-		var $ = RSWorkspace
-		// $.refresh()
-		// $.project("Sample").pkg("introduce_factory").classes.first.introduce_factory
 		
-		// rename private fields adding prefix
-		/*
-		val privateFields = $.project("Sample").pkg("test.dsl").classes.first.fields.select(By.Modifier(With.or(Array("private"))))
-		.foreach(e => e.rename("_" + e.name))
-		*/
-		println("before")
-		$.project("Sample").pkg("test.dsl").classes.first.constructors.first.introduce_factory()
-		println("after")
+		val undo = UndoManager.popUndo
+		undo.perform(new NullProgressMonitor())
 		
-		alert(window, "Complete", "execute() has been successfully executed")
-		return null
-
-		var selection: ISelection = HandlerUtil.getCurrentSelection(event)
-
-		println(selection.getClass().toString())
-
-		if (selection.isInstanceOf[TextSelection]) {
-			var tSelection = selection.asInstanceOf[TextSelection]
-			println("offset =" + tSelection.getOffset())
-			println("length =" + tSelection.getLength())
-			println("startline = " + tSelection.getStartLine())
-			println("endline= " + tSelection.getEndLine())
-			var text = tSelection.getText()
-		} else if (selection.isInstanceOf[IStructuredSelection]) {
-			var sSelection = selection.asInstanceOf[IStructuredSelection]
-			var firstElement = sSelection.getFirstElement()
-			if (firstElement.isInstanceOf[ICompilationUnit]) {
-				var unit: ICompilationUnit = firstElement.asInstanceOf[ICompilationUnit]
-			}
-		}
-
-		MessageDialog.openInformation(
-			window.getShell(),
-			"Test Plugins",
-			"Hello, Eclipse world");
+//		println("execute() is invoked")
+//		var window: IWorkbenchWindow = HandlerUtil.getActiveWorkbenchWindowChecked(event);
+//		var $ = RSWorkspace
+//		// $.refresh()
+//		// $.project("Sample").pkg("introduce_factory").classes.first.introduce_factory
+//		
+//		// rename private fields adding prefix
+//		/*
+//		val privateFields = $.project("Sample").pkg("test.dsl").classes.first.fields.select(By.Modifier(With.or(Array("private"))))
+//		.foreach(e => e.rename("_" + e.name))
+//		*/
+//		println("before")
+//		$.project("Sample").pkg("test.dsl").classes.first.constructors.first.introduce_factory()
+//		println("after")
+//		
+//		alert(window, "Complete", "execute() has been successfully executed")
+//		return null
+//
+//		var selection: ISelection = HandlerUtil.getCurrentSelection(event)
+//
+//		println(selection.getClass().toString())
+//
+//		if (selection.isInstanceOf[TextSelection]) {
+//			var tSelection = selection.asInstanceOf[TextSelection]
+//			println("offset =" + tSelection.getOffset())
+//			println("length =" + tSelection.getLength())
+//			println("startline = " + tSelection.getStartLine())
+//			println("endline= " + tSelection.getEndLine())
+//			var text = tSelection.getText()
+//		} else if (selection.isInstanceOf[IStructuredSelection]) {
+//			var sSelection = selection.asInstanceOf[IStructuredSelection]
+//			var firstElement = sSelection.getFirstElement()
+//			if (firstElement.isInstanceOf[ICompilationUnit]) {
+//				var unit: ICompilationUnit = firstElement.asInstanceOf[ICompilationUnit]
+//			}
+//		}
+//		MessageDialog.openInformation(
+//			window.getShell(),
+//			"Test Plugins",
+//			"Hello, Eclipse world");
 		return null;
 	}
 
