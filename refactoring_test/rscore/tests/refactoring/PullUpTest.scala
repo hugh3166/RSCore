@@ -30,7 +30,7 @@ class PullUpTest extends RefactoringBaseTest {
 
 		val superClass = RSWorkspace.project(projectName).pkg(testGroupIdentifier).classes().first
 
-		val project = members.first.getJavaProject()
+		val project = members.head.getJavaProject()
 		val processor = new PullUpRefactoringProcessor(members, JavaPreferencesSettings.getCodeGenerationSettings(project))
 
 		processor.setDestinationType(superClass.origin())

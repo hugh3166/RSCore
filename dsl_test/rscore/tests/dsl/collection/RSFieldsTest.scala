@@ -6,7 +6,6 @@ import rscore.dsl.entity.RSWorkspace
 import org.junit.Before
 import rscore.dsl.entity.RSWorkspace
 import rscore.dsl.entity.RSProject
-import scala.reflect.This
 import rscore.dsl.entity.collection.By
 import rscore.dsl.entity.collection.With
 import rscore.dsl.util.ImplicitConversions._

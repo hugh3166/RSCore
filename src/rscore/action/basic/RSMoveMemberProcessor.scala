@@ -44,7 +44,7 @@ class MoveMemberProcessor(rsObject: RSObject, destClass: RSClass) extends RSAbst
 			() =>
 				{
 					if (members.length > 0) {
-						val project = members.first.getJavaProject()
+						val project = members.head.getJavaProject()
 						val processor = new MoveStaticMembersProcessor(
 							members,
 							JavaPreferencesSettings.getCodeGenerationSettings(project))

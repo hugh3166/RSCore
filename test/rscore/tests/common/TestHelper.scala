@@ -53,7 +53,7 @@ object TestHelper {
 
 			val natureId: String = JavaCore.NATURE_ID
 			val newNatures = (prevNatures.toBuffer + natureId).toArray
-			description.setNatureIds(newNatures)
+			description.setNatureIds(newNatures.asInstanceOf[Array[String]])
 			project.setDescription(description, null)
 		}
 
@@ -120,7 +120,7 @@ object TestHelper {
 		if(oldEntries.exists(_.equals(cpe))){
 			return;
 		}
-		val newEntries = (oldEntries.toBuffer + cpe).toArray
+		val newEntries = (oldEntries.toBuffer += cpe).toArray
 		jproject.setRawClasspath(newEntries, new NullProgressMonitor)
 	}
 	

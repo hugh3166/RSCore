@@ -19,7 +19,7 @@ object ChangeSignature {
 		var root = CUHelper.getSourceFolder(project)
 		var pack = root.getPackageFragment("change_signature")
 		var cu = CUHelper.getCompilationUnit(pack, "Foo")
-		var typ = cu.getTypes().first
+		var typ = cu.getTypes().head
 
 		var stringSignature = Signature.createTypeSignature("String", false)
 		var method: IMethod = typ.getMethod("method", Array[String](Signature.SIG_INT, stringSignature))

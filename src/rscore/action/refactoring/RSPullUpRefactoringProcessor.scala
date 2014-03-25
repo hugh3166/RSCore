@@ -39,7 +39,7 @@ class RSPullUpRefactoringProcessor(rsObject: RSObject, targetClass: RSClass) ext
 	private def createActionForFieldCollection(fs: Array[IField]): (() => Unit) = {
 		val action: (() => Unit) =
 			() => {
-				val project = fs.first.getJavaProject()
+				val project = fs.head.getJavaProject()
 				val processor = new org.eclipse.jdt.internal.corext.refactoring.structure.PullUpRefactoringProcessor(
 					fs.map(_.asInstanceOf[IMember]),
 					JavaPreferencesSettings.getCodeGenerationSettings(project))
@@ -58,7 +58,7 @@ class RSPullUpRefactoringProcessor(rsObject: RSObject, targetClass: RSClass) ext
 		val action: (() => Unit) = {
 			() =>
 				{
-					val project = ms.first.getJavaProject()
+					val project = ms.head.getJavaProject()
 					val processor = new org.eclipse.jdt.internal.corext.refactoring.structure.PullUpRefactoringProcessor(
 						ms.map(_.asInstanceOf[IMember]),
 						JavaPreferencesSettings.getCodeGenerationSettings(project))

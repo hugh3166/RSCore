@@ -4,7 +4,7 @@ import rscore.dsl.entity.collection.By
 
 class RenameFieldAndAccessorTest extends ApplicationTest{
 	@Test
-	def フィールド名・対応するアクセサの名前・ゲッタのパラメータ名を変更する(): Unit = {
+	def フィールド名対応するアクセサの名前ゲッタのパラメータ名を変更する(): Unit = {
 		val testName = "RenameFieldAndAccessorTest"
 		prepareTest(testName)
 

@@ -38,7 +38,7 @@ class RSField(element: IField)
 		() =>
 			{
 				var dec = getDeclaration()
-				dec.fragments().first.asInstanceOf[VariableDeclarationFragment].getName().toString()
+				dec.fragments().head.asInstanceOf[VariableDeclarationFragment].getName().toString()
 			}
 	}.apply()
 

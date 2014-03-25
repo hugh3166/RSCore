@@ -50,7 +50,7 @@ class RSIntroduceFactoryRefactoringProcessor(rsObject: RSObject, superclass: RSC
 
 	private def createActionForClass(cls: RSClass): RSRefactoringAction = {
 		println("createActionForClass")
-		return new RSRefactoringAction(cls.constructors.elements.map(createElement(_, superclass)).toSeq)
+		return new RSRefactoringAction(cls.constructors.iterator.map(createElement(_, superclass)).toSeq)
 	}
 
 }

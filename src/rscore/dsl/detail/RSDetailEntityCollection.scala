@@ -9,7 +9,7 @@ case class RSDetailEntityCollection[T <: RSDetailEntity](elements: List[T]) {
 	def size: Int = this.length
 	def cont: Int = this.length
 	
-	def first = elements.first
+	def first = elements.head
 	def apply(index: Int) = elements(index)
 	
 }

@@ -47,7 +47,7 @@ class IntroduceFactoryToDP extends ApplicationTest {
 
 		abstractClass.methods.select(By namereg """create.*""").foreach(m => {
 			m.change_return_type(abstractClass.name)
-			val newName = "for" + r.findAllIn(m.name).matchData.toArray.first.group(1)
+			val newName = "for" + r.findAllIn(m.name).matchData.toArray.head.group(1)
 			m.rename(newName)
 		})
 

@@ -19,7 +19,7 @@ class RSRenameParameterRefactoringProcessor(p: RSParameter, newName: String) ext
 				val target = infos.filter(_.getOldName() == originalName)
 				
 				if(target.length != 0){
-					target.first.setNewName(newName)
+					target.head.setNewName(newName)
 				}
 				
 				RefactoringHelper.performRefactoring(ref)

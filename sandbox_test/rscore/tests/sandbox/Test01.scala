@@ -59,7 +59,7 @@ class Test01 extends SandboxBaseTest {
 
 		println(variableDeclarationStatements.length)
 
-		val vds = variableDeclarationStatements.first
+		val vds = variableDeclarationStatements.head
 		val start = vds.getStartPosition()
 		val length = vds.getLength()
 
@@ -71,7 +71,7 @@ class Test01 extends SandboxBaseTest {
 		println(source.substring(start, start + length))
 
 		val expressionStatements = getExpressionStatements(body)
-		val es = expressionStatements.first
+		val es = expressionStatements.head
 
 		val left = es.getExpression().asInstanceOf[Assignment].getLeftHandSide()
 		val esStart = left.getStartPosition()

@@ -25,7 +25,7 @@ object IntroduceFactory {
 		val constructors: RSCollection[RSMethod] = cls.constructors
 		// val firstConstructor: RSMethod = constructors.first
 
-		for (c <- constructors.elements) {
+		for (c <- constructors.iterator) {
 			val nameRange: ISourceRange = c.origin.getNameRange()
 			val offset = nameRange.getOffset()
 			val length = nameRange.getLength()
