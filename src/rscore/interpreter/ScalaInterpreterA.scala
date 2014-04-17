@@ -5,6 +5,8 @@ import scala.tools.nsc.interpreter._
 import java.io.{PrintWriter, FileOutputStream}
 import java.io.File
 
+// TODO:Å@Change ClassLoader for Interpreter
+
 object ScalaInterpreterA {
 	var myMain: IMain = _
 	val mySettings: Settings = new Settings

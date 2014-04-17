@@ -15,5 +15,6 @@
 	<classpathentry kind="src" path="sandbox_test"/>
 	<classpathentry kind="con" path="org.scala-ide.sdt.launching.SCALA_COMPILER_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
+	<classpathentry kind="lib" path="jars/ReSynth_1.0.0.201306011821.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

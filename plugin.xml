@@ -13,12 +13,28 @@
             categoryId="plugin_using_scala.commands.category"
             id="plugin_using_scala.commands.sampleCommand">
       </command>
+      <command
+            id="RSCore.commandTest"
+            name="commandTest">
+      </command>
+      <command
+            id="RSCore.commandTest2"
+            name="commandTest2">
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.handlers">
       <handler
             commandId="plugin_using_scala.commands.sampleCommand"
             class="rscore.handlers.SampleHandler">
+      </handler>
+      <handler
+            class="rscore.handlers.HandlerTest"
+            commandId="RSCore.commandTest">
+      </handler>
+      <handler
+            class="rscore.handlers.HandlerTest2"
+            commandId="RSCore.commandTest2">
       </handler>
    </extension>
    <extension
@@ -44,6 +60,17 @@
                   label="Undo"
                   mnemonic="S">
             </command>
+            <command
+                  commandId="RSCore.commandTest"
+                  id="RSCore.menus.commandTest"
+                  label="commandTest">
+            </command>
+            <command
+                  commandId="RSCore.commandTest2"
+                  id="RSCore.menus.commandTest2"
+                  label="commandTest2"
+                  style="push">
+            </command>
          </menu>
       </menuContribution>
       <menuContribution
@@ -58,9 +85,6 @@
             </command>
          </toolbar>
       </menuContribution>
-   </extension>
-   <extension
-         point="org.eclipse.ui.handlers">
    </extension>
 
 </plugin>

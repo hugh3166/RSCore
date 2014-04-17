@@ -8,23 +8,52 @@ import scala.tools.nsc.util.BatchSourceFile
 import scala.tools.nsc.interpreter.AbstractFileClassLoader
 import java.io.{PrintWriter, FileOutputStream}
 import java.io.File
+import java.io.FilenameFilter
 
 object ScalaCompiler {
+	
+	class JarFilter extends FilenameFilter {
+		def accept(dir: File, name: String):Boolean = {
+			name.endsWith(".jar")
+		}
+	}
+  
 	private val SCRIPTENCODE: String = "UTF-8"
 	private val COMPILECLASSNAME: String = "MyScriptClass"
+	
+	val rootPath = getClass.getProtectionDomain().getCodeSource().getLocation().getPath() + "bin"
+	val selfPath = getResourcePath("/rscore/dsl/common/RSObject.class")
+	val scalaLibraryPath = getResourcePath("/scala/ScalaObject.class")
+	val scalaCompilerPath = getResourcePath("/scala/tools/nsc/Global.class")
+	val eclipseCorePath = getResourcePath("/org/eclipse/core/resources/ResourcesPlugin.class")
+	val eclipseJdtPath = getResourcePath("/org/eclipse/jdt/core/JavaCore.class")
+	val runtimePath = getResourcePath("/org/eclipse/core/runtime/NullProgressMonitor.class")
+	val runtimePath2 = getResourcePath("/org/eclipse/core/runtime/jobs/ISchedulingRule.class")
+	val runtimePath3 = getResourcePath("/org/eclipse/core/runtime/content/IContentTypeMatcher.class")
+	val rubyPath = getResourcePath("/org/jruby/Ruby.class")
+//	val bootClassPath = List(scalaLibraryPath, scalaCompilerPath, eclipseCorePath, eclipseJdtPath, runtimePath, runtimePath2, runtimePath3, rubyPath, rootPath)
 
+	val dir = new File("/Applications/eclipse_kepler/plugins")
+	val fs = dir.listFiles(new JarFilter)
+	
+	var bootClassPath = List.empty[String]
+	fs.foreach(f => {
+	    bootClassPath = f.toString::bootClassPath
+	} )
+	bootClassPath = scalaLibraryPath::scalaCompilerPath::rootPath::rubyPath::bootClassPath
+	
 	private val mySettings: Settings = new Settings
 	mySettings.deprecation.value = true  // deprecative warning
 	mySettings.unchecked.value = true  // unchecked warning
-	mySettings.outputDirs.setSingleOutput(ScalaInterpreterA.rootPath)	// set output directory to (RSCore/bin)
-	mySettings.classpath.append(ScalaInterpreterA.rootPath)	// set classpath to (RSCore/bin)
-	mySettings.bootclasspath.value = ScalaInterpreterA.bootClassPath.mkString(File.pathSeparator)
+	mySettings.outputDirs.setSingleOutput(rootPath)	// set output directory to (RSCore/bin)
+	mySettings.classpath.append(rootPath)	// set classpath to (RSCore/bin)
+	mySettings.bootclasspath.value = bootClassPath.mkString(File.pathSeparator)
 
 	// TODO: Clear. For testing, write reports to desktop
 	private val out = new PrintWriter(new FileOutputStream("/Users/young/Desktop/Compiler_output.txt"))
 	private val global: Global = new Global(mySettings, new ConsoleReporter(mySettings, Console.in, out))  // Reporter output to console
 
-	private val classLoader = getClass.getClassLoader()
+	private val classLoader = getClass.getClassLoader
   	// use self's ClassLoader to load compiled class
 
 	// compile from file using class name gave by parameter
@@ -47,6 +76,8 @@ object ScalaCompiler {
 	} catch {
 	    case e: Throwable =>
 	      	e.printStackTrace(out)
+	      	val strErr = e.toString
+	      	println(strErr)
 	      	None
 	}
 
@@ -92,5 +123,20 @@ object ScalaCompiler {
   		val random = new Random
   		return COMPILECLASSNAME + random.nextInt(Integer.MAX_VALUE)
   	}
+  	
+  	// get resource path from current runtime
+	private def getResourcePath(resourceName: String): String = {
+		val resourceURL = getClass.getClassLoader.getResource(resourceName)
+		val nativeURL = org.eclipse.core.runtime.Platform.resolve(resourceURL)
+		val path = nativeURL.getPath()
+		
+		val indexOfFileScheme = if(path.indexOf("file:") >= 0) path.indexOf("file:") + 5 else 0 
+		val indexOfSeparator = path.lastIndexOf('!')
+
+		if (indexOfSeparator >= 0)
+			path.substring(indexOfFileScheme, indexOfSeparator)
+		else
+			path.substring(indexOfFileScheme)
+	}
   	
 }
