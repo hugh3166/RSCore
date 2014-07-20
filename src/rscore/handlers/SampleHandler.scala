@@ -103,8 +103,7 @@ class SampleHandler extends AbstractHandler {
 	 */
 	def execute(event: ExecutionEvent): Object = {
 		
-		val undo = UndoManager.popUndo
-		undo.perform(new NullProgressMonitor())
+		UndoManager.undo
 		
 //		println("execute() is invoked")
 //		var window: IWorkbenchWindow = HandlerUtil.getActiveWorkbenchWindowChecked(event);
